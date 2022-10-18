@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { NextPageContext } from "next";
 import Country from "../component/Country";
+import styled from "@emotion/styled";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -13,11 +14,11 @@ type HomeProps = {
 
 const Home: NextPage<HomeProps> = ({ countries }) => {
   return (
-    <div>
+    <StyledHome>
       {countries.map((country) => (
         <Country country={country} key={country.name.official} />
       ))}
-    </div>
+    </StyledHome>
   );
 };
 
@@ -30,3 +31,7 @@ export async function getStaticProps(context: NextPageContext) {
 }
 
 export default Home;
+
+const StyledHome = styled("div")(({ theme }) => ({
+  backgroundColor: theme.colors.secondary,
+}));
